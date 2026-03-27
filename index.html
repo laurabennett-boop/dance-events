@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>舞蹈活动日历 2026</title>
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --card: #1a1a2e;
+    --accent: #e94560;
+    --accent2: #0f3460;
+    --text: #eee;
+    --muted: #888;
+    --green: #00c853;
+    --orange: #ff9100;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 60px;
+  }
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding: 30px 20px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--accent);
+  }
+  .header h1 {
+    font-size: 24px;
+    background: linear-gradient(90deg, var(--accent), #ff6b6b, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .header .subtitle {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .filters {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .filters::-webkit-scrollbar { display: none; }
+  .filter-btn {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #333;
+    background: transparent;
+    color: var(--muted);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  .month-section {
+    padding: 0 16px;
+    margin-bottom: 20px;
+  }
+  .month-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+    padding: 16px 0 8px;
+    border-bottom: 1px solid #222;
+    margin-bottom: 12px;
+    position: sticky;
+    top: 88px;
+    background: var(--bg);
+    z-index: 50;
+  }
+  .event-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--accent);
+    transition: transform 0.15s;
+    cursor: pointer;
+  }
+  .event-card:active { transform: scale(0.98); }
+  .event-card.past { opacity: 0.5; border-left-color: #555; }
+  .event-card.happening { border-left-color: var(--green); box-shadow: 0 0 12px rgba(0,200,83,0.15); }
+  .event-card.upcoming { border-left-color: var(--orange); }
+  .event-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+  }
+  .event-name {
+    font-size: 16px;
+    font-weight: 600;
+    flex: 1;
+    line-height: 1.3;
+  }
+  .event-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    margin-left: 8px;
+    font-weight: 600;
+  }
+  .badge-past { background: #333; color: #888; }
+  .badge-now { background: var(--green); color: #000; }
+  .badge-soon { background: var(--orange); color: #000; }
+  .badge-later { background: var(--accent2); color: #ddd; }
+  .event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .event-meta span::before {
+    margin-right: 4px;
+  }
+  .event-desc {
+    font-size: 13px;
+    color: #aaa;
+    line-height: 1.5;
+    display: none;
+  }
+  .event-card.expanded .event-desc { display: block; margin-top: 8px; }
+  .event-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: #222;
+    color: #aaa;
+  }
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .stats span { color: var(--accent); font-weight: 700; }
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+  .update-note {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #555;
+  }
+  @media (min-width: 600px) {
+    .month-section { max-width: 600px; margin-left: auto; margin-right: auto; }
+    .header { padding: 40px 20px 24px; }
+    .header h1 { font-size: 30px; }
+    .filters { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>💃 舞蹈活动日历</h1>
+  <div class="subtitle">HipHop / House / Breaking / Street Dance</div>
+  <div class="stats" id="stats"></div>
+</div>
+
+<div class="filters" id="filters"></div>
+
+<div id="events-container"></div>
+
+<div class="update-note" id="update-note"></div>
+
+<script>
+const NOW = new Date();
+const EVENTS = [
+  // ===== 3月 =====
+  {
+    name: "广州市青少年街舞联赛 2026 首站",
+    start: "2026-03-29",
+    end: "2026-03-29",
+    city: "广州",
+    location: "白云区核心商圈",
+    type: ["街舞", "青少年"],
+    desc: "2026年广州市青少年街舞联赛，季度积分赛首站。融合竞技激情、商业活力。",
+    link: "http://tyj.gz.gov.cn/bmzc/qzty/content/post_10671738.html"
+  },
+  // ===== 4月 =====
+  {
+    name: "StepYaGameUp 2026 Asia Qualifier",
+    start: "2026-04-01",
+    end: "2026-04-06",
+    city: "广州",
+    location: "广州（具体场地见官方公告）",
+    type: ["HipHop", "Battle", "国际赛"],
+    desc: "SYGU亚洲预选赛，Host & Battle DJ: Buddha Stretch。O'MA GLOBAL旗下赛事。",
+    link: "https://www.instagram.com/reel/DWQanbiE0QS/"
+  },
+  {
+    name: "HK International Dance Festival",
+    start: "2026-04-06",
+    end: "2026-04-06",
+    city: "香港",
+    location: "Hopewell Hotel Grand Ballroom, Hong Kong",
+    type: ["街舞", "Festival"],
+    desc: "HKINTERNATIONAL Dance Festival & Eventopia 2026。PowerCamp 7/5-6另外举办。",
+    link: "https://www.instagram.com/reel/DTrkVnygdZv/"
+  },
+  {
+    name: "VOID: Filip Xavi 上海站",
+    start: "2026-04-10",
+    end: "2026-04-11",
+    city: "上海",
+    location: "EXIT, 幸福路298号, 长宁区",
+    type: ["Techno", "派对"],
+    desc: "VOID厂牌19年历史，巴尔干战神Filip Xavi双城巡演。22:00-05:00。Lineup: Ma Haiping / Shanghai Ultra / Filip Xavi",
+    link: "https://ra.co/events/2400045"
+  },
+  {
+    name: "VOID: Filip Xavi 北京站",
+    start: "2026-04-11",
+    end: "2026-04-12",
+    city: "北京",
+    location: "北京（具体场地待公布）",
+    type: ["Techno", "派对"],
+    desc: "VOID厂牌Filip Xavi双城巡演北京站。",
+    link: ""
+  },
+  {
+    name: "Elite HK Dance Competition 2026",
+    start: "2026-04-10",
+    end: "2026-04-27",
+    city: "香港",
+    location: "Y Theatre, Youth Square, 柴湾",
+    type: ["街舞", "比赛"],
+    desc: "香港精英舞蹈比赛2026。分多日举行：4/10-12, 4/16-27。场次：9:45am / 2:30pm / 7:30pm。",
+    link: "https://elite.hkdaa.hk/"
+  },
+  {
+    name: "Battle King 2026 World Final",
+    start: "2026-04-11",
+    end: "2026-04-13",
+    city: "宁波",
+    location: "浙江宁波奉化区溪口镇武岭广场",
+    type: ["Breaking", "Battle", "国际赛"],
+    desc: "王者之战2026世界总决赛。项目：Kids1on1 / KidsCrew / Powermove 7ToSmoke / CypherKing / Opening Workshop / Basketball 3v3 / Bboy 4on4 / Bboy 1on1",
+    link: "https://and8.dance/en/e/5380"
+  },
+  {
+    name: "BDS青少年世界街舞大赛 vol.6",
+    start: "2026-04-25",
+    end: "2026-04-25",
+    city: "台湾",
+    location: "DEX舞極專業街舞企業社",
+    type: ["街舞", "青少年", "Battle"],
+    desc: "Beyond Da Stage 第六届青少年世界街舞大赛。13:00-21:00。",
+    link: "https://www.instagram.com/p/DUjJGrpE2pp/"
+  },
+  // ===== 5月 =====
+  {
+    name: "DANCE ON LIFE 新竹全國街舞大賽",
+    start: "2026-05-02",
+    end: "2026-05-02",
+    city: "台湾",
+    location: "新竹县政府前广场",
+    type: ["街舞", "Battle", "齐舞"],
+    desc: "第四届DANCE ON LIFE，新竹县全国街舞大赛。含All Style Battle、排舞等项目。",
+    link: "https://www.facebook.com/awesomehsinchu/"
+  },
+  // ===== 6月 =====
+  {
+    name: "HHI China 中国赛区",
+    start: "2026-06-01",
+    end: "2026-06-01",
+    city: "重庆",
+    location: "重庆（日期场地待定）",
+    type: ["HipHop", "齐舞", "国际赛"],
+    desc: "Hip Hop International 2026中国赛区。HHI 25周年纪念。具体日期待官方公布。",
+    link: "https://hiphopinternational.com/schedule-of-events-worldwide/"
+  },
+  {
+    name: "BATTLEFRESH 2K26 World Final",
+    start: "2026-06-16",
+    end: "2026-06-22",
+    city: "北京",
+    location: "北京",
+    type: ["HipHop", "Battle", "国际赛"],
+    desc: "BATTLEFRESH 2K26世界总决赛，HipHop Culture Week。项目：HipHop 2on2, HipHop 1on1 All Age。裁判：Zyko (Brainstorm), 99 Lil Chao等。决赛日：6/21-22。",
+    link: "https://www.instagram.com/p/DV8Vxuik-FX/"
+  },
+];
+
+function getStatus(ev) {
+  const start = new Date(ev.start + "T00:00:00+08:00");
+  const end = new Date(ev.end + "T23:59:59+08:00");
+  if (NOW > end) return "past";
+  if (NOW >= start && NOW <= end) return "now";
+  const diff = (start - NOW) / (1000*60*60*24);
+  if (diff <= 14) return "soon";
+  return "later";
+}
+
+function formatDate(s, e) {
+  const months = ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
+  const ds = new Date(s + "T00:00:00");
+  const de = new Date(e + "T00:00:00");
+  const ms = months[ds.getMonth()];
+  if (s === e) return `${ms}${ds.getDate()}日`;
+  if (ds.getMonth() === de.getMonth()) return `${ms}${ds.getDate()}-${de.getDate()}日`;
+  return `${ms}${ds.getDate()}日 - ${months[de.getMonth()]}${de.getDate()}日`;
+}
+
+function getMonthKey(ev) {
+  return ev.start.substring(0, 7);
+}
+
+function getMonthLabel(key) {
+  const [y, m] = key.split("-");
+  return `${y}年${parseInt(m)}月`;
+}
+
+// Collect all cities & types for filters
+const allCities = [...new Set(EVENTS.map(e => e.city))];
+const allTypes = [...new Set(EVENTS.flatMap(e => e.type))];
+
+let activeFilter = "all";
+
+function render() {
+  // Filter events
+  let filtered = EVENTS;
+  if (activeFilter === "upcoming") {
+    filtered = EVENTS.filter(e => getStatus(e) !== "past");
+  } else if (allCities.includes(activeFilter)) {
+    filtered = EVENTS.filter(e => e.city === activeFilter);
+  } else if (allTypes.includes(activeFilter)) {
+    filtered = EVENTS.filter(e => e.type.includes(activeFilter));
+  }
+
+  // Stats
+  const total = EVENTS.length;
+  const upcoming = EVENTS.filter(e => getStatus(e) !== "past").length;
+  const happening = EVENTS.filter(e => getStatus(e) === "now").length;
+  document.getElementById("stats").innerHTML =
+    `共 <span>${total}</span> 个活动 · <span>${upcoming}</span> 个未开始 · <span>${happening}</span> 个进行中`;
+
+  // Filters
+  const filtersEl = document.getElementById("filters");
+  let filterHtml = `<button class="filter-btn ${activeFilter==='all'?'active':''}" onclick="setFilter('all')">全部</button>`;
+  filterHtml += `<button class="filter-btn ${activeFilter==='upcoming'?'active':''}" onclick="setFilter('upcoming')">未过期</button>`;
+  allCities.forEach(c => {
+    filterHtml += `<button class="filter-btn ${activeFilter===c?'active':''}" onclick="setFilter('${c}')">${c}</button>`;
+  });
+  filtersEl.innerHTML = filterHtml;
+
+  // Group by month
+  const grouped = {};
+  filtered.forEach(ev => {
+    const mk = getMonthKey(ev);
+    if (!grouped[mk]) grouped[mk] = [];
+    grouped[mk].push(ev);
+  });
+
+  const container = document.getElementById("events-container");
+  if (filtered.length === 0) {
+    container.innerHTML = `<div class="empty-state">暂无匹配的活动</div>`;
+    return;
+  }
+
+  let html = "";
+  Object.keys(grouped).sort().forEach(mk => {
+    html += `<div class="month-section"><div class="month-label">${getMonthLabel(mk)}</div>`;
+    grouped[mk].forEach((ev, i) => {
+      const status = getStatus(ev);
+      const badgeMap = {
+        past: ["已结束", "badge-past"],
+        now: ["进行中", "badge-now"],
+        soon: ["即将开始", "badge-soon"],
+        later: ["稍后", "badge-later"]
+      };
+      const [badgeText, badgeCls] = badgeMap[status];
+      const cardCls = status === "past" ? "past" : status === "now" ? "happening" : status === "soon" ? "upcoming" : "";
+      const linkHtml = ev.link ? `<br><a href="${ev.link}" target="_blank" style="color:var(--accent);text-decoration:none;">查看详情 →</a>` : "";
+      html += `
+        <div class="event-card ${cardCls}" onclick="this.classList.toggle('expanded')">
+          <div class="event-top">
+            <div class="event-name">${ev.name}</div>
+            <div class="event-badge ${badgeCls}">${badgeText}</div>
+          </div>
+          <div class="event-meta">
+            <span>📅 ${formatDate(ev.start, ev.end)}</span>
+            <span>📍 ${ev.city}</span>
+          </div>
+          <div class="event-meta">
+            <span>🏟️ ${ev.location}</span>
+          </div>
+          <div class="event-tags">
+            ${ev.type.map(t => `<span class="tag">${t}</span>`).join("")}
+          </div>
+          <div class="event-desc">${ev.desc}${linkHtml}</div>
+        </div>`;
+    });
+    html += `</div>`;
+  });
+  container.innerHTML = html;
+}
+
+function setFilter(f) {
+  activeFilter = f;
+  render();
+}
+
+render();
+
+document.getElementById("update-note").textContent = "最后更新: " + new Date().toLocaleDateString("zh-CN") + " · 点击卡片查看详情";
+</script>
+</body>
+</html>
