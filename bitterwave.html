@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BE THE WAVE — @BitterWavve Track List</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #111118;
+      --bg3: #1a1a25;
+      --accent: #6c63ff;
+      --accent2: #ff6584;
+      --green: #39d353;
+      --red: #ff4757;
+      --text: #e8e8f0;
+      --text2: #9090a8;
+      --border: #2a2a3a;
+      --yt: #ff0000;
+      --card: #16161f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a0a2e 40%, #0d1a3a 100%);
+      padding: 60px 24px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(108,99,255,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .wave-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #fff 0%, #c8c0ff 50%, #6c63ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .hero-sub {
+      color: var(--text2);
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+    .hero-sub a {
+      color: var(--text2);
+      text-decoration: none;
+    }
+    .hero-sub a:hover { color: var(--text); }
+
+    /* Spotify button */
+    .spotify-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #1DB954;
+      color: #000;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 12px 24px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 20px rgba(29,185,84,0.3);
+      letter-spacing: 0.3px;
+    }
+    .spotify-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(29,185,84,0.45);
+    }
+    .spotify-btn svg { width: 20px; height: 20px; }
+
+    /* Stats bar */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding: 20px 24px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .stat-pill.found-pill { border-color: rgba(57,211,83,0.3); color: var(--green); }
+    .stat-pill.notfound-pill { border-color: rgba(255,71,87,0.3); color: var(--red); }
+    .stat-pill.total-pill { color: var(--text2); }
+
+    /* Filter tabs */
+    .filters {
+      display: flex;
+      gap: 8px;
+      padding: 16px 24px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+    .filter-btn {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      padding: 7px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.15s;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .filter-btn.active-found { background: rgba(57,211,83,0.15); border-color: var(--green); color: var(--green); }
+    .filter-btn.active-notfound { background: rgba(255,71,87,0.15); border-color: var(--red); color: var(--red); }
+
+    /* Search */
+    .search-bar {
+      padding: 12px 24px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+    }
+    .search-bar input {
+      width: 100%;
+      max-width: 480px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 9px 16px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .search-bar input:focus { border-color: var(--accent); }
+    .search-bar input::placeholder { color: var(--text2); }
+
+    /* Table container */
+    .table-wrap {
+      overflow-x: auto;
+      padding: 0 24px 40px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.9rem;
+    }
+    thead th {
+      text-align: left;
+      padding: 10px 12px;
+      color: var(--text2);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    tbody tr {
+      border-bottom: 1px solid rgba(42,42,58,0.5);
+      transition: background 0.1s;
+    }
+    tbody tr:hover { background: var(--bg3); }
+    tbody td {
+      padding: 11px 12px;
+      vertical-align: middle;
+    }
+    td.num { color: var(--text2); font-size: 0.8rem; width: 42px; font-variant-numeric: tabular-nums; }
+    td.artist { font-weight: 600; color: var(--text); }
+    td.title { color: var(--text2); }
+    td.status { width: 50px; text-align: center; font-size: 1.1rem; }
+    td.yt-cell { width: 100px; }
+
+    /* Found/not-found row tinting */
+    tr.found td.artist { color: var(--text); }
+    tr.not-found { opacity: 0.75; }
+    tr.not-found td.artist { color: #aaa; }
+
+    /* YT link */
+    .yt-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--yt);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255,0,0,0.08);
+      border: 1px solid rgba(255,0,0,0.2);
+      transition: all 0.15s;
+    }
+    .yt-link:hover {
+      background: rgba(255,0,0,0.18);
+      border-color: rgba(255,0,0,0.5);
+    }
+    .yt-link svg { width: 13px; height: 13px; }
+    .no-link { color: var(--border); font-size: 0.9rem; }
+
+    /* Hide rows */
+    tr.hidden { display: none; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text2);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 40px 16px 36px; }
+      .table-wrap { padding: 0 12px 32px; }
+      td.yt-cell { display: none; }
+      thead th:last-child { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wave-label">@BitterWavve · House Music Archive</div>
+  <h1>BE THE WAVE</h1>
+  <p class="hero-sub">5 YouTube playlists · <a href="https://www.youtube.com/@BitterWavve" target="_blank">@BitterWavve</a> · curated house music</p>
+  <a href="https://open.spotify.com/playlist/6k2UZkzCHLpjxUMAjD198F" target="_blank" class="spotify-btn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+    在 Spotify 收听
+  </a>
+</div>
+
+<div class="stats">
+  <div class="stat-pill found-pill">✅ 已找到 <strong>85</strong> 首</div>
+  <div class="stat-pill notfound-pill">❌ 未找到 <strong>12</strong> 首</div>
+  <div class="stat-pill total-pill">共 <strong>97</strong> 首</div>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filterTracks('all', this)">全部 (97)</button>
+  <button class="filter-btn" onclick="filterTracks('found', this)">✅ 已找到 (85)</button>
+  <button class="filter-btn" onclick="filterTracks('not-found', this)">❌ 未找到 (12)</button>
+</div>
+
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="搜索艺术家或歌名..." oninput="searchTracks(this.value)">
+</div>
+
+<div class="table-wrap">
+  <table id="trackTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>艺术家</th>
+        <th>歌名</th>
+        <th>状态</th>
+        <th>来源</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <tr class="found">
+      <td class="num">1</td>
+      <td class="artist">Daft Punk</td>
+      <td class="title">Burnin'</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">2</td>
+      <td class="artist">Hardrive</td>
+      <td class="title">Deep Inside</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=_ygXzlAaj34" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">3</td>
+      <td class="artist">Kerri Chandler</td>
+      <td class="title">Atmospheric Beats</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=FpiSzHn5_FU" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">4</td>
+      <td class="artist">Kaytranada</td>
+      <td class="title">Vivid Dreams (feat. River Tiber)</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">5</td>
+      <td class="artist">Todd Terry</td>
+      <td class="title">Jumpin'</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=_ygXzlAaj34" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">6</td>
+      <td class="artist">Kenny Dope</td>
+      <td class="title">Brazossa</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">7</td>
+      <td class="artist">Masters At Work feat. India</td>
+      <td class="title">I Can't Get No Sleep</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">8</td>
+      <td class="artist">Kerri Chandler</td>
+      <td class="title">Hallelujah</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">9</td>
+      <td class="artist">Masters At Work</td>
+      <td class="title">Work</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">10</td>
+      <td class="artist">MD X-Spress</td>
+      <td class="title">God Made Me Phunky</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">11</td>
+      <td class="artist">Kenny Dope</td>
+      <td class="title">The Bomb! (These Sounds Fall Into My Mind)</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">12</td>
+      <td class="artist">Kerri Chandler</td>
+      <td class="title">Rain</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">13</td>
+      <td class="artist">Dennis Ferrer</td>
+      <td class="title">Hey Hey (DF's Attention Vocal Mix)</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=GBVbkb_wsg8" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">14</td>
+      <td class="artist">Joey Negro</td>
+      <td class="title">Must Be The Music</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=nzGUvQR89uU" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="not-found">
+      <td class="num">15</td>
+      <td class="artist">Kenny Dope</td>
+      <td class="title">K-Jams</td>
+      <td class="status">❌</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">16</td>
+      <td class="artist">Cassius</td>
+      <td class="title">Cassius 1999</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">17</td>
+      <td class="artist">Kenny Dope</td>
+      <td class="title">Get Your Thing Together</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">18</td>
+      <td class="artist">Mood II Swing</td>
+      <td class="title">All Night Long</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">19</td>
+      <td class="artist">Kerri Chandler</td>
+      <td class="title">Atmosphere</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">20</td>
+      <td class="artist">DJ Gregory</td>
+      <td class="title">Elle</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">21</td>
+      <td class="artist">Louie Vega & The Martinez Brothers</td>
+      <td class="title">Let It Go</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">22</td>
+      <td class="artist">Kenny Dope</td>
+      <td class="title">The Illest</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">23</td>
+      <td class="artist">Masters At Work feat. India</td>
+      <td class="title">To Be In Love</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">24</td>
+      <td class="artist">Masters At Work</td>
+      <td class="title">The Ha Dance</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">25</td>
+      <td class="artist">Louie Vega & Jay Sinister Sealee feat. Julie McKnight</td>
+      <td class="title">Diamond Life</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFiAvIX8TnC1bnQLcMIoS-u" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">26</td>
+      <td class="artist">Kerri Chandler</td>
+      <td class="title">Bar a Thym</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=-jORMIeY1LQ" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">27</td>
+      <td class="artist">Cassius</td>
+      <td class="title">1999</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">28</td>
+      <td class="artist">Armand Van Helden</td>
+      <td class="title">My My My</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">29</td>
+      <td class="artist">Kenny Dope & House Syndicate</td>
+      <td class="title">Jam The Box</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=nzGUvQR89uU" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">30</td>
+      <td class="artist">Cajmere ft. Dajae</td>
+      <td class="title">Brighter Days</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">31</td>
+      <td class="artist">DJ Pierre</td>
+      <td class="title">Generate Power</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">32</td>
+      <td class="artist">Cajmere</td>
+      <td class="title">Percolator</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">33</td>
+      <td class="artist">Louie Vega & Jay Sinister Sealee</td>
+      <td class="title">Diamond Life</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">34</td>
+      <td class="artist">DJ Gregory</td>
+      <td class="title">Attend 1</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=2ctXiPHtXxM" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">35</td>
+      <td class="artist">Copyright ft. Song Williamson</td>
+      <td class="title">He Is</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">36</td>
+      <td class="artist">Joey Negro</td>
+      <td class="title">Make A Move On Me</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="not-found">
+      <td class="num">37</td>
+      <td class="artist">Stardust</td>
+      <td class="title">Music Sounds Better With You</td>
+      <td class="status">❌</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=3STNWN6eCL4" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">38</td>
+      <td class="artist">Basement Jaxx</td>
+      <td class="title">Red Alert</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">39</td>
+      <td class="artist">Peven Everett</td>
+      <td class="title">Stuck</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">40</td>
+      <td class="artist">Daft Punk</td>
+      <td class="title">Teachers</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="not-found">
+      <td class="num">41</td>
+      <td class="artist">Joe Smooth</td>
+      <td class="title">Promised Land</td>
+      <td class="status">❌</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=8CnXPDdA4Ts" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">42</td>
+      <td class="artist">Marshall Jefferson</td>
+      <td class="title">Move Your Body (The House Music Anthem)</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="not-found">
+      <td class="num">43</td>
+      <td class="artist">Barbara Tucker</td>
+      <td class="title">Beautiful People</td>
+      <td class="status">❌</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">44</td>
+      <td class="artist">DJ Spinna feat. Heavy</td>
+      <td class="title">We Can Change This World</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">45</td>
+      <td class="artist">Blaze</td>
+      <td class="title">Breathe</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">46</td>
+      <td class="artist">Moodymann</td>
+      <td class="title">Shades of Jae</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">47</td>
+      <td class="artist">DJ Gregory</td>
+      <td class="title">Tropical Soundclash</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=FpiSzHn5_FU" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">48</td>
+      <td class="artist">Joey Beltram</td>
+      <td class="title">Energy Flash</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=-jORMIeY1LQ" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">49</td>
+      <td class="artist">Black & White Brothers</td>
+      <td class="title">Put Your Hands Up</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">50</td>
+      <td class="artist">Copyright ft. Shovell</td>
+      <td class="title">Wizeman</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">51</td>
+      <td class="artist">Peven Everett</td>
+      <td class="title">Gabriel</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">52</td>
+      <td class="artist">Blaze</td>
+      <td class="title">Lovelee Dae</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniGEDp_qmalByPeFMTkiQ11s" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="not-found">
+      <td class="num">53</td>
+      <td class="artist">Frankie Knuckles ft. Jamie Principle</td>
+      <td class="title">Your Love</td>
+      <td class="status">❌</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">54</td>
+      <td class="artist">Moodymann</td>
+      <td class="title">I Can't Kick This Feeling When It Hits</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">55</td>
+      <td class="artist">Blaze</td>
+      <td class="title">Do You Remember House?</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=nzGUvQR89uU" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">56</td>
+      <td class="artist">Hardsoul ft. Ron Carroll</td>
+      <td class="title">Back Together</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">57</td>
+      <td class="artist">DJ Spen & The MuthaFunkaz</td>
+      <td class="title">Enjoy Giving It Up</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">58</td>
+      <td class="artist">Louie Vega ft. Anané Vega</td>
+      <td class="title">Heaven Knows</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">59</td>
+      <td class="artist">Kings of Tomorrow ft. Julie McKnight</td>
+      <td class="title">Finally</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">60</td>
+      <td class="artist">Sandy Rivera</td>
+      <td class="title">I Can't Stop</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">61</td>
+      <td class="artist">Sandy Rivera ft. LT Brown</td>
+      <td class="title">Come Into My Room</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">62</td>
+      <td class="artist">The Shapeshifters</td>
+      <td class="title">Lola's Theme</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">63</td>
+      <td class="artist">Moodymann</td>
+      <td class="title">Dem Young Sconies</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="not-found">
+      <td class="num">64</td>
+      <td class="artist">DJ Romain & Danny Krivit</td>
+      <td class="title">A New Vision</td>
+      <td class="status">❌</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">65</td>
+      <td class="artist">Kim English</td>
+      <td class="title">Nite Life</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">66</td>
+      <td class="artist">The Nightwriters</td>
+      <td class="title">Let The Music (Use You)</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="not-found">
+      <td class="num">67</td>
+      <td class="artist">Black Coffee ft. Bucie</td>
+      <td class="title">Superman</td>
+      <td class="status">❌</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">68</td>
+      <td class="artist">Blaze ft. Palmer Brown</td>
+      <td class="title">My Beat</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">69</td>
+      <td class="artist">Joey Negro pres. The Sunburst Band</td>
+      <td class="title">Garden of Love</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">70</td>
+      <td class="artist">Kenny Dope</td>
+      <td class="title">Get Down</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniFAE-aLhH-S4k8ibD7AT6Wk" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">71</td>
+      <td class="artist">Kenny Dope ft. Screechy Dan</td>
+      <td class="title">Boogaloo</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=_ygXzlAaj34" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">72</td>
+      <td class="artist">Copyright ft. Shovell</td>
+      <td class="title">Kamili</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=oaS_ZGmyOrg" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">73</td>
+      <td class="artist">Disclosure ft. Eliza Doolittle</td>
+      <td class="title">You & Me (Flume Remix)</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=FpiSzHn5_FU" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">74</td>
+      <td class="artist">Armand Van Helden ft. Duane Harden</td>
+      <td class="title">You Don't Know Me</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=FpiSzHn5_FU" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="not-found">
+      <td class="num">75</td>
+      <td class="artist">Robin S.</td>
+      <td class="title">Show Me Love</td>
+      <td class="status">❌</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEUXLKcuATV-GQSYfpwyaJs" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">76</td>
+      <td class="artist">Sandy Rivera & Haze</td>
+      <td class="title">Freak</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEUXLKcuATV-GQSYfpwyaJs" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">77</td>
+      <td class="artist">Bob Sinclar</td>
+      <td class="title">I Feel For You</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEUXLKcuATV-GQSYfpwyaJs" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">78</td>
+      <td class="artist">Basement Jaxx</td>
+      <td class="title">Rendez-Vu</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=-jORMIeY1LQ" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">79</td>
+      <td class="artist">Klement Bonelli</td>
+      <td class="title">Henry</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=kkLbHa9MLnQ" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">80</td>
+      <td class="artist">Mr. Fingers</td>
+      <td class="title">Can You Feel It</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=nzGUvQR89uU" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">81</td>
+      <td class="artist">The Believers</td>
+      <td class="title">Who Dares To Believe In Me?</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=TsYOmMZXPL4" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="not-found">
+      <td class="num">82</td>
+      <td class="artist">Frankie Knuckles</td>
+      <td class="title">The Whistle Song</td>
+      <td class="status">❌</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=xXp6W1EoDfg" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">83</td>
+      <td class="artist">Byron Stingily</td>
+      <td class="title">Get Up (Everybody)</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEUXLKcuATV-GQSYfpwyaJs" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">84</td>
+      <td class="artist">Barbara Tucker</td>
+      <td class="title">I Get Lifted</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEUXLKcuATV-GQSYfpwyaJs" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">85</td>
+      <td class="artist">Basement Jaxx</td>
+      <td class="title">Fly Life</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=w2aA-a3qhjQ" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="not-found">
+      <td class="num">86</td>
+      <td class="artist">Kenny Dope ft. Screechie Dan</td>
+      <td class="title">Boomin' In Ya Jeep</td>
+      <td class="status">❌</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/watch?v=w2aA-a3qhjQ" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">87</td>
+      <td class="artist">Kenny Dope</td>
+      <td class="title">Get Your Hands Up</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEKy6GjRGpDfYX1Gk4skboy" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="not-found">
+      <td class="num">88</td>
+      <td class="artist">Kenny Dope Presents The Bucketheads</td>
+      <td class="title">The Bomb! (These Sounds Fall Into My Mind)</td>
+      <td class="status">❌</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEKy6GjRGpDfYX1Gk4skboy" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">89</td>
+      <td class="artist">Armand Van Helden</td>
+      <td class="title">You Don't Know Me</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEKy6GjRGpDfYX1Gk4skboy" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">90</td>
+      <td class="artist">Todd Terry feat. Martha Wash & Jocelyn Brown</td>
+      <td class="title">Keep On Jumpin'</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEKy6GjRGpDfYX1Gk4skboy" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">91</td>
+      <td class="artist">Joey Negro & The Sunburst Band</td>
+      <td class="title">Garden of Love</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEKy6GjRGpDfYX1Gk4skboy" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">92</td>
+      <td class="artist">DJ Spen & Todd Terry feat. Michele Chiavarini</td>
+      <td class="title">Can't Give You Up</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEKy6GjRGpDfYX1Gk4skboy" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">93</td>
+      <td class="artist">Kenny Dope & House Syndicate</td>
+      <td class="title">Jam The Mace</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEKy6GjRGpDfYX1Gk4skboy" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">94</td>
+      <td class="artist">Kings of Tomorrow</td>
+      <td class="title">Finally</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEKy6GjRGpDfYX1Gk4skboy" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">95</td>
+      <td class="artist">DJ Spen & Karizma</td>
+      <td class="title">4 The Love</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEKy6GjRGpDfYX1Gk4skboy" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="found">
+      <td class="num">96</td>
+      <td class="artist">Black Motion feat. Xoli M</td>
+      <td class="title">Set Me Free</td>
+      <td class="status">✅</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEKy6GjRGpDfYX1Gk4skboy" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    <tr class="not-found">
+      <td class="num">97</td>
+      <td class="artist">Robin S</td>
+      <td class="title">Show Me Love</td>
+      <td class="status">❌</td>
+      <td class="yt-cell"><a href="https://www.youtube.com/playlist?list=PLF3EaoUvMniEKy6GjRGpDfYX1Gk4skboy" target="_blank" class="yt-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<footer>
+  <p>音乐识别自 <a href="https://www.youtube.com/@BitterWavve" target="_blank">@BitterWavve</a> 的 YouTube 歌单 · Spotify 歌单 <a href="https://open.spotify.com/playlist/6k2UZkzCHLpjxUMAjD198F" target="_blank">BE THE WAVE</a> · 2026</p>
+</footer>
+
+<script>
+  let currentFilter = 'all';
+
+  function filterTracks(type, btn) {
+    currentFilter = type;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('active', 'active-found', 'active-notfound');
+    });
+    if (type === 'found') btn.classList.add('active-found');
+    else if (type === 'not-found') btn.classList.add('active-notfound');
+    else btn.classList.add('active');
+    applyFilters();
+  }
+
+  function searchTracks(q) {
+    applyFilters(q);
+  }
+
+  function applyFilters(q) {
+    q = (q || document.getElementById('searchInput').value).toLowerCase();
+    document.querySelectorAll('#trackTable tbody tr').forEach(row => {
+      const matchFilter = currentFilter === 'all' || row.classList.contains(currentFilter);
+      const text = row.querySelector('.artist').textContent.toLowerCase() + ' ' + row.querySelector('.title').textContent.toLowerCase();
+      const matchSearch = !q || text.includes(q);
+      row.classList.toggle('hidden', !(matchFilter && matchSearch));
+    });
+  }
+</script>
+
+</body>
+</html>
