@@ -520,36 +520,12 @@ const TODAY = new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate());
 
 const EVENTS = [
   {
-    name: "HOUSE IN POCKET pres. ritmiq",
-    start: "2026-04-10", end: "2026-04-10",
-    city: "上海", location: "Reactor Shanghai, 昭化路638号",
-    type: ["House", "派对"],
-    desc: "HOUSE IN POCKET presents ritmiq。Reactor Shanghai House音乐派对。22:00-06:00。",
-    link: "https://ra.co/events/2412005"
-  },
-  {
-    name: "Mixcin Revoluts 公演",
-    start: "2026-04-12", end: "2026-04-12",
-    city: "台湾", location: "新板教室, 新北市",
-    type: ["街舞", "演出"],
-    desc: "Mixcin Revoluts 街舞公演。",
-    link: ""
-  },
-  {
-    name: "USA Hip Hop Dance Championship 25th Anniversary",
-    start: "2026-04-10", end: "2026-04-12",
-    city: "洛杉矶", location: "Los Angeles, CA",
-    type: ["HipHop", "国际赛"],
-    desc: "USA Hip Hop Dance Championship 25周年纪念赛。全美最大嘻哈舞蹈锦标赛，涵盖青少年至成人组别。",
-    link: "https://www.heraldmailmedia.com/press-release/story/61187/"
-  },
-  {
-    name: "International Dance League 首赛季",
-    start: "2026-05-02", end: "2026-05-02",
-    city: "纽约", location: "New York City, NY",
-    type: ["街舞", "国际赛"],
-    desc: "International Dance League (IDL) 首赛季开幕。全新职业街舞联赛模式。",
-    link: "https://www.idl.pro/"
+    name: "Elite HK Dance Competition 2026",
+    start: "2026-04-10", end: "2026-04-27",
+    city: "香港", location: "Y Theatre, Youth Square, 柴湾",
+    type: ["街舞", "比赛"],
+    desc: "香港精英舞蹈比赛2026。分多日举行：4/10-12, 4/16-27。场次：9:45am / 2:30pm / 7:30pm。",
+    link: "https://elite.hkdaa.hk/"
   },
   {
     name: "G-SHOCK 校园街舞联赛 2026",
@@ -560,52 +536,44 @@ const EVENTS = [
     link: "https://www.bilibili.com/video/BV11DwrzjEbN/"
   },
   {
-    name: "New Atlantis by Heim @ Heim_shanghai",
-    start: "2026-04-11", end: "2026-04-11",
-    city: "上海", location: "Heim_shanghai, B1, 154 Nanyang Road, 静安区",
-    type: ["House", "Techno", "派对"],
-    desc: "New Atlantis派对，Heim上海地下音乐场景。RA.co发布。",
-    link: "https://ra.co/"
-  },
-  {
-    name: "这！就是街舞 第七季 海选",
-    start: "2026-04-25", end: "2026-04-25",
-    city: "洛杉矶", location: "Los Angeles, CA",
-    type: ["HipHop", "House", "Locking", "Popping"],
-    desc: "优酷《这！就是街舞》第七季海外海选洛杉矶站。舞种：Hip-Hop/House/Locking/Popping。面向全球华人及国际舞者。",
+    name: "舞冕之王 超级街舞联赛",
+    start: "2026-04-01", end: "2026-06-29",
+    city: "全国", location: "全国（中日韩阵容）",
+    type: ["街舞", "Battle", "国际赛"],
+    desc: "舞冕之王超级街舞联赛，4月至6月全国赛程。中日韩顶级舞者阵容。",
     link: ""
   },
   {
-    name: "VOID: Filip Xavi 上海站",
-    start: "2026-04-10", end: "2026-04-11",
+    name: "KOD 2026-2027 城市分站赛",
+    start: "2026-04-01", end: "2026-12-31",
+    city: "全国", location: "全国限定8站（城市待公布）",
+    type: ["HipHop", "Battle", "国际赛"],
+    desc: "KOD (Keep On Dancing) 全球街舞大赛城市分站赛。「风起此城·以舞争锋」，全国限定八站。",
+    link: "https://www.douyin.com/search/KOD%E8%A1%97%E8%88%9E%E5%A4%A7%E8%B5%9B"
+  },
+  {
+    name: "Florian Picasso & Two Dots @ Dirty House",
+    start: "2026-04-24", end: "2026-04-24",
+    city: "上海", location: "INS Park 4F, 延安东路109号",
+    type: ["派对"],
+    desc: "Florian Picasso & Two Dots @ Dirty House上海。22:00-05:00。PLAYGROUND主办。",
+    link: "https://ra.co/events/2402208"
+  },
+  {
+    name: "Siam After Dark feat. XULALIT",
+    start: "2026-04-24", end: "2026-04-24",
+    city: "上海", location: "The Sukhothai Shanghai",
+    type: ["派对"],
+    desc: "Siam After Dark feat. XULALIT @ The Sukhothai Shanghai。20:00-02:00。",
+    link: "https://ra.co/events/2417150"
+  },
+  {
+    name: "FRUITYGROOVE Meets Shortkut",
+    start: "2026-04-24", end: "2026-04-24",
     city: "上海", location: "EXIT, 幸福路298号, 长宁区",
-    type: ["Techno", "派对"],
-    desc: "VOID厂牌19年历史，巴尔干战神Filip Xavi双城巡演。22:00-05:00。Lineup: Ma Haiping / Shanghai Ultra / Filip Xavi",
-    link: "https://ra.co/events/2400045"
-  },
-  {
-    name: "VOID: Filip Xavi 北京站",
-    start: "2026-04-11", end: "2026-04-12",
-    city: "北京", location: "北京（具体场地待公布）",
-    type: ["Techno", "派对"],
-    desc: "VOID厂牌Filip Xavi双城巡演北京站。",
-    link: ""
-  },
-  {
-    name: "Elite HK Dance Competition 2026",
-    start: "2026-04-10", end: "2026-04-27",
-    city: "香港", location: "Y Theatre, Youth Square, 柴湾",
-    type: ["街舞", "比赛"],
-    desc: "香港精英舞蹈比赛2026。分多日举行：4/10-12, 4/16-27。场次：9:45am / 2:30pm / 7:30pm。",
-    link: "https://elite.hkdaa.hk/"
-  },
-  {
-    name: "Battle King 2026 World Final",
-    start: "2026-04-11", end: "2026-04-13",
-    city: "宁波", location: "浙江宁波奉化区溪口镇武岭广场",
-    type: ["Breaking", "Battle", "国际赛"],
-    desc: "王者之战2026世界总决赛。项目：Kids1on1 / KidsCrew / Powermove 7ToSmoke / CypherKing / Opening Workshop / Basketball 3v3 / Bboy 4on4 / Bboy 1on1",
-    link: "https://and8.dance/en/e/5380"
+    type: ["派对"],
+    desc: "FRUITYGROOVE Meets Shortkut @ EXIT上海。22:00-05:00。",
+    link: "https://ra.co/events/2416905"
   },
   {
     name: "BDS青少年世界街舞大赛 vol.6",
@@ -614,46 +582,6 @@ const EVENTS = [
     type: ["街舞", "青少年", "Battle"],
     desc: "Beyond Da Stage 第六届青少年世界街舞大赛。13:00-21:00。",
     link: "https://www.instagram.com/p/DUjJGrpE2pp/"
-  },
-  {
-    name: "Noise Mafia @ Dirty House Shanghai",
-    start: "2026-04-17", end: "2026-04-17",
-    city: "上海", location: "Dirty House, INS Park 4F, 延安东路109号",
-    type: ["House", "Techno", "派对"],
-    desc: "Noise Mafia派对，House/Techno音乐之夜。22:00-05:00。PLAYGROUND主办。",
-    link: "https://ra.co/events/2402188"
-  },
-  {
-    name: "新高埕街舞Battle大赛 2026",
-    start: "2026-04-18", end: "2026-04-18",
-    city: "高雄", location: "新高埕（高雄车站B1下沉式广场）",
-    type: ["街舞", "Battle"],
-    desc: "儿童VS成人对决。12:00报到，13:15-19:00比赛。冠军奖金$6000+奖杯+商演机会，亚军$3000。",
-    link: "https://www.instagram.com/p/DWBfkxZkzwI/"
-  },
-  {
-    name: "天空擂台 All Style 1on1 Battle",
-    start: "2026-04-18", end: "2026-04-18",
-    city: "台湾", location: "亚洲大学 H栋",
-    type: ["街舞", "Battle"],
-    desc: "最温馨的Battle赛事。推广街舞Battle文化，小型赛制。12:00报到，13:00-18:00。",
-    link: "https://www.instagram.com/reel/DVLZfQvk93Q/"
-  },
-  {
-    name: "YO Dancical 协青街舞剧 2026",
-    start: "2026-04-18", end: "2026-04-18",
-    city: "香港", location: "沙田大会堂",
-    type: ["街舞", "演出"],
-    desc: "协青社Youth Outreach举办，协青35周年系列活动。含展览及青年工作坊。",
-    link: "https://www.yo.org.hk/en/latest-news.html"
-  },
-  {
-    name: "BATTLEFRESH 2K26 香港站",
-    start: "2026-04-19", end: "2026-04-19",
-    city: "香港", location: "铜锣湾维多利亚公园南亭广场",
-    type: ["HipHop", "Battle"],
-    desc: "BATTLEFRESH 2K26香港站。项目：HipHop 1on1 All Age、HipHop 2on2。",
-    link: "https://www.instagram.com/p/DV8WTJMky_q/"
   },
   {
     name: "锁(SUo) Vol.10 Locking 1on1 Battle",
@@ -672,12 +600,172 @@ const EVENTS = [
     link: "http://www.news.cn/sports/20260316/22f7b8be592d42d689a203289c63feaf/c.html"
   },
   {
+    name: "KEEP HUSH - SHANGHAI",
+    start: "2026-04-25", end: "2026-04-25",
+    city: "上海", location: "EXIT, 幸福路298号, 长宁区",
+    type: ["派对"],
+    desc: "KEEP HUSH上海站。21:00-05:00。",
+    link: "https://ra.co/events/2417128"
+  },
+  {
+    name: "System Breaker by Beat Street",
+    start: "2026-04-25", end: "2026-04-25",
+    city: "台湾", location: "DEX舞極專業街舞企業社",
+    type: ["街舞", "Battle"],
+    desc: "System Breaker 2on2街舞Battle。13:00-21:00。网路报名$650/组，现场$700/组。",
+    link: "https://www.instagram.com/reel/DV6IcbZDznG/"
+  },
+  {
+    name: "这！就是街舞 第七季 海选",
+    start: "2026-04-25", end: "2026-04-25",
+    city: "洛杉矶", location: "Los Angeles, CA",
+    type: ["HipHop", "House", "Locking", "Popping"],
+    desc: "优酷《这！就是街舞》第七季海外海选洛杉矶站。舞种：Hip-Hop/House/Locking/Popping。面向全球华人及国际舞者。",
+    link: ""
+  },
+  {
+    name: "EASYHOUSE TOUR BEIJING 2026",
+    start: "2026-04-25", end: "2026-04-25",
+    city: "北京", location: "北京（具体场地见IG）",
+    type: ["House", "派对"],
+    desc: "EASYHOUSE TOUR 北京站2026。House音乐主题派对。",
+    link: "https://www.instagram.com/p/DW31lQfivDT/"
+  },
+  {
+    name: "Ahung's House Dance Workshop",
+    start: "2026-04-26", end: "2026-04-26",
+    city: "台湾", location: "台湾（具体场地见IG）",
+    type: ["House", "Workshop"],
+    desc: "Ahung's House Dance Workshop基础养成班。适合House Dance初学者。",
+    link: "https://www.instagram.com/p/DUxBpi7gTt5/"
+  },
+  {
+    name: "Feed the Dragon x REPROBATE @ Studio 9",
+    start: "2026-04-27", end: "2026-04-27",
+    city: "台湾", location: "Studio 9, 台北",
+    type: ["House", "Techno", "派对"],
+    desc: "Feed the Dragon与REPROBATE联手打造最大规模一期，连接台北与香港电子音乐场景。",
+    link: "https://ra.co/events/1901660"
+  },
+  {
+    name: "SATI Beijing Pre-Party Psychedelic Night",
+    start: "2026-04-30", end: "2026-04-30",
+    city: "北京", location: "北京（具体场地见RA）",
+    type: ["派对"],
+    desc: "SATI北京迷幻之夜前派对。",
+    link: "https://ra.co/events/2419672"
+  },
+  {
+    name: "KOD 深圳站 POPPING/LOCKING/HIPHOP",
+    start: "2026-05-01", end: "2026-05-02",
+    city: "深圳", location: "华发前海冰雪世界",
+    type: ["Popping", "Locking", "HipHop", "Battle"],
+    desc: "KOD 2026城市分站赛深圳站。项目：Popping/Locking/HipHop。",
+    link: "https://www.instagram.com/reel/DXL1fj6EnFW/"
+  },
+  {
+    name: "TopPlan 2026 HipHop Camp",
+    start: "2026-05-01", end: "2026-05-01",
+    city: "台中", location: "台中（具体场地待公布）",
+    type: ["HipHop", "Workshop", "Battle"],
+    desc: "TopPlan 2026 HipHop Camp台中站。2v2+1v1 Battle。",
+    link: ""
+  },
+  {
     name: "DANCE ON LIFE 新竹全國街舞大賽",
     start: "2026-05-02", end: "2026-05-03",
     city: "台湾", location: "新竹县政府前广场（竹北市光明六路10号）",
     type: ["街舞", "Battle", "齐舞"],
     desc: "第四届DANCE ON LIFE，新竹县全国街舞大赛。Day1: KPOP Cover/团体排舞赛/Breaking/MATEC/街舞晚会(10:00-21:00)。Day2: 大师课/All Style 1on1/颁奖。报名截止4/25，完全免费。",
     link: "https://www.facebook.com/awesomehsinchu/"
+  },
+  {
+    name: "International Dance League 首赛季",
+    start: "2026-05-02", end: "2026-05-02",
+    city: "纽约", location: "New York City, NY",
+    type: ["街舞", "国际赛"],
+    desc: "International Dance League (IDL) 首赛季开幕。全新职业街舞联赛模式。",
+    link: "https://www.idl.pro/"
+  },
+  {
+    name: "Anyma AEDEN Shanghai",
+    start: "2026-05-02", end: "2026-05-02",
+    city: "上海", location: "森兰无界公园",
+    type: ["派对"],
+    desc: "Anyma AEDEN上海站，大型电子音乐活动。",
+    link: ""
+  },
+  {
+    name: "Dancehall International Asia 2026",
+    start: "2026-05-08", end: "2026-05-10",
+    city: "武汉", location: "武汉（具体场地待公布）",
+    type: ["街舞", "Workshop", "Battle", "国际赛"],
+    desc: "Dancehall International Asia亚洲站，首次来到中国武汉！8节Workshop + Battles + Parties。嘉宾：Joelimmortal等国际舞者。报名截止4/30。",
+    link: "https://dancehall-international.com/en/?REGION_ID=62"
+  },
+  {
+    name: "HipHop International Taiwan 台灣站",
+    start: "2026-05-09", end: "2026-05-09",
+    city: "新北市", location: "四號公園文創演藝廳, 中和區中安街85號B1",
+    type: ["HipHop", "齐舞", "国际赛"],
+    desc: "Hip Hop International 2026台湾站。团体排舞项目报名已开放，通往凤凰城总决赛。",
+    link: "https://hiphopinternational.com/"
+  },
+  {
+    name: "BATTLEFRESH 北京总决赛",
+    start: "2026-05-15", end: "2026-05-15",
+    city: "北京", location: "北京（具体场地待公布）",
+    type: ["HipHop", "Battle"],
+    desc: "BATTLEFRESH World Final北京总决赛，澳门冠军直通参赛。",
+    link: ""
+  },
+  {
+    name: "Great Wall Festival 2026",
+    start: "2026-05-16", end: "2026-05-16",
+    city: "北京", location: "长城 怀柔区九谷口",
+    type: ["派对"],
+    desc: "Great Wall Festival 2026，长城脚下音乐节。",
+    link: "https://ra.co/events/2414291"
+  },
+  {
+    name: "Beat Dem Bad Vol.4",
+    start: "2026-05-17", end: "2026-05-17",
+    city: "台湾", location: "台湾（具体场地待公布）",
+    type: ["街舞", "Battle"],
+    desc: "Beat Dem Bad Vol.4 街舞Battle。",
+    link: ""
+  },
+  {
+    name: "SDS Showcase 2026 选拔",
+    start: "2026-05-17", end: "2026-05-17",
+    city: "香港", location: "香港（具体场地待公布）",
+    type: ["街舞", "演出"],
+    desc: "SDS Showcase 2026选拔赛，香港街舞展演。",
+    link: ""
+  },
+  {
+    name: "Nanjing Lindy Festival 2026",
+    start: "2026-05-22", end: "2026-05-24",
+    city: "南京", location: "1701 Livehouse Max, 南京",
+    type: ["House", "派对", "Workshop"],
+    desc: "Jazz to Life! 南京Lindy Festival 2026。Gordon Webster Band、The Hot Shots携手世界级DJ，为Lindy Hopper打造梦想舞池。3天Swing/Jazz/House音乐盛宴。",
+    link: "https://www.nanjinglindyfestival.com/"
+  },
+  {
+    name: "WE@ONe YO全港街舞比赛",
+    start: "2026-05-23", end: "2026-05-23",
+    city: "香港", location: "协青社",
+    type: ["街舞", "Battle"],
+    desc: "WE@ONe YO全港街舞比赛。截止报名4/24。",
+    link: "https://www.instagram.com/p/DUTHxzVDwak/"
+  },
+  {
+    name: "亞洲中學生校際嘻哈舞蹈大賽 2026",
+    start: "2026-05-23", end: "2026-05-23",
+    city: "香港", location: "香港（具体场地待公布）",
+    type: ["HipHop", "比赛", "青少年"],
+    desc: "亚洲中学生校际嘻哈舞蹈大赛2026香港初赛。报名截止4/24。",
+    link: ""
   },
   {
     name: "中国街舞联赛 2026 第二站（南京）",
@@ -688,14 +776,6 @@ const EVENTS = [
     link: "http://www.news.cn/sports/20260316/22f7b8be592d42d689a203289c63feaf/c.html"
   },
   {
-    name: "HHI Taiwan 台湾站",
-    start: "2026-06-01", end: "2026-06-01",
-    city: "台湾", location: "台湾（日期场地待定）",
-    type: ["HipHop", "齐舞", "国际赛"],
-    desc: "Hip Hop International 2026台湾站。团体排舞项目报名已开放，通往凤凰城总决赛。",
-    link: "https://hiphopinternational.com/"
-  },
-  {
     name: "HHI China 中国赛区",
     start: "2026-06-01", end: "2026-06-01",
     city: "重庆", location: "重庆（日期场地待定）",
@@ -704,60 +784,12 @@ const EVENTS = [
     link: "https://hiphopinternational.com/schedule-of-events-worldwide/"
   },
   {
-    name: "KOD 2026-2027 城市分站赛",
-    start: "2026-04-01", end: "2026-12-31",
-    city: "全国", location: "全国限定8站（城市待公布）",
-    type: ["HipHop", "Battle", "国际赛"],
-    desc: "KOD (Keep On Dancing) 全球街舞大赛城市分站赛。「风起此城·以舞争锋」，全国限定八站。",
-    link: "https://www.douyin.com/search/KOD%E8%A1%97%E8%88%9E%E5%A4%A7%E8%B5%9B"
-  },
-  {
-    name: "BATTLEFRESH 2K26 World Final",
-    start: "2026-06-16", end: "2026-06-22",
-    city: "北京", location: "北京",
-    type: ["HipHop", "Battle", "国际赛"],
-    desc: "BATTLEFRESH 2K26世界总决赛，HipHop Culture Week。项目：HipHop 2on2, HipHop 1on1 All Age。裁判：Zyko (Brainstorm), 99 Lil Chao等。决赛日：6/21-22。",
-    link: "https://www.instagram.com/p/DV8Vxuik-FX/"
-  },
-  {
-    name: "PowerCamp HK 舞蹈训练营",
-    start: "2026-07-05", end: "2026-07-06",
-    city: "香港", location: "Hopewell Hotel Grand Ballroom",
-    type: ["Workshop", "训练营"],
-    desc: "HKO26 Hong Kong Open赛前2天精英训练营，由国际顶级教练授课。",
-    link: "https://www.hko.dance/power-camp/"
-  },
-  {
-    name: "HKCCDC 香港挑战杯舞蹈赛 2026",
-    start: "2026-07-18", end: "2026-07-21",
-    city: "香港", location: "Y-Theatre, Youth Square, 柴湾",
-    type: ["街舞", "比赛"],
-    desc: "The Hong Kong Challenge Cup Dance Competition (HKCCDC) 2026。涵盖中国大陆、澳门、香港舞者。",
-    link: "https://www.facebook.com/HKCCDC/"
-  },
-  {
-    name: "中国街舞联赛 2026 第三站（山东）",
-    start: "2026-07-25", end: "2026-07-26",
-    city: "山东", location: "山东（具体城市待定）",
-    type: ["Breaking", "Battle", "国家级"],
-    desc: "2026中国街舞联赛第三站，亚运会霹雳舞国家队选拔赛。项目：男子/女子公开组、U14组、团队赛。",
-    link: "http://www.news.cn/sports/20260316/22f7b8be592d42d689a203289c63feaf/c.html"
-  },
-  {
-    name: "Tempio del Futuro Perduto 中国巡演",
-    start: "2026-03-28", end: "2026-04-15",
-    city: "全国", location: "北京/上海/广州/香港等9城",
-    type: ["House", "Techno", "派对"],
-    desc: "米兰传奇厂牌Tempio del Futuro Perduto首次中国巡演，3周9城。涵盖北京、上海、广州、香港等。",
-    link: "https://ra.co/news/84746"
-  },
-  {
-    name: "正欣杯舞蹈比赛",
-    start: "2026-04-12", end: "2026-04-12",
-    city: "台湾", location: "龙华科技大学 U栋演艺厅",
-    type: ["街舞", "Battle"],
-    desc: "正欣杯舞蹈比赛，全年龄全舞风。12:00-13:00报到。早鸟报名截止4/9。",
-    link: "https://www.instagram.com/reel/DPHj7iGj_sN/"
+    name: "Battle Central Vol.6",
+    start: "2026-06-01", end: "2026-06-01",
+    city: "台湾", location: "台湾（具体场地待公布）",
+    type: ["Breaking", "Battle"],
+    desc: "Battle Central Vol.6。Breaking Mix 2on2。报名截止5/24。",
+    link: ""
   },
   {
     name: "College High 第22届全国制霸 World Cup",
@@ -776,100 +808,84 @@ const EVENTS = [
     link: "https://ra.co/events/2384155"
   },
   {
-    name: "UDO 世界总决赛资格赛 香港",
-    start: "2026-04-18", end: "2026-04-19",
-    city: "香港", location: "铜锣湾维多利亚公园",
+    name: "BATTLEFRESH 2K26 World Final",
+    start: "2026-06-16", end: "2026-06-22",
+    city: "北京", location: "北京",
+    type: ["HipHop", "Battle", "国际赛"],
+    desc: "BATTLEFRESH 2K26世界总决赛，HipHop Culture Week。项目：HipHop 2on2, HipHop 1on1 All Age。裁判：Zyko (Brainstorm), 99 Lil Chao等。决赛日：6/21-22。",
+    link: "https://www.instagram.com/p/DV8Vxuik-FX/"
+  },
+  {
+    name: "HSH 全國中學生街舞公開賽",
+    start: "2026-06-19", end: "2026-06-19",
+    city: "台北", location: "32b-One Garage",
+    type: ["街舞", "Battle", "青少年"],
+    desc: "HSH全國中學生街舞公開賽2026。",
+    link: "http://www.obsbattle.com"
+  },
+  {
+    name: "PowerCamp HK 舞蹈训练营",
+    start: "2026-07-05", end: "2026-07-06",
+    city: "香港", location: "Hopewell Hotel Grand Ballroom",
+    type: ["Workshop", "训练营"],
+    desc: "HKO26 Hong Kong Open赛前2天精英训练营，由国际顶级教练授课。",
+    link: "https://www.hko.dance/power-camp/"
+  },
+  {
+    name: "Hong Kong Open Dance Championships 2026",
+    start: "2026-07-07", end: "2026-07-09",
+    city: "香港", location: "香港（具体场地待定）",
+    type: ["街舞", "比赛", "国际赛"],
+    desc: "Hong Kong Open Dance Championships 2026。报名早鸟截止4/30。",
+    link: "https://hko.dance"
+  },
+  {
+    name: "昆山街舞营",
+    start: "2026-07-07", end: "2026-07-13",
+    city: "昆山", location: "金陵大饭店, 昆山",
+    type: ["HipHop", "Workshop", "训练营"],
+    desc: "昆山街舞营。HipHop/Funk大师课 + 1on1 Battle。7天集训。",
+    link: ""
+  },
+  {
+    name: "HKCCDC 香港挑战杯舞蹈赛 2026",
+    start: "2026-07-18", end: "2026-07-21",
+    city: "香港", location: "Y-Theatre, Youth Square, 柴湾",
+    type: ["街舞", "比赛"],
+    desc: "The Hong Kong Challenge Cup Dance Competition (HKCCDC) 2026。涵盖中国大陆、澳门、香港舞者。",
+    link: "https://www.facebook.com/HKCCDC/"
+  },
+  {
+    name: "中国街舞联赛 2026 第三站（山东）",
+    start: "2026-07-25", end: "2026-07-26",
+    city: "山东", location: "山东（具体城市待定）",
+    type: ["Breaking", "Battle", "国家级"],
+    desc: "2026中国街舞联赛第三站，亚运会霹雳舞国家队选拔赛。项目：男子/女子公开组、U14组、团队赛。",
+    link: "http://www.news.cn/sports/20260316/22f7b8be592d42d689a203289c63feaf/c.html"
+  },
+  {
+    name: "新北國際街舞大賽 2026",
+    start: "2026-08-01", end: "2026-08-01",
+    city: "新北市", location: "新北市（具体场地待公布）",
     type: ["街舞", "Battle", "国际赛"],
-    desc: "United Dance Organisation (UDO) 世界总决赛资格赛香港站。多舞种Battle及齐舞项目。",
+    desc: "新北國際街舞大賽2026。冠軍直通國際舞台。報名中。",
     link: ""
   },
   {
-    name: "春景當思 Spring Contemplation Dance",
-    start: "2026-04-11", end: "2026-04-11",
-    city: "北京", location: "北京（具体场地待公布）",
-    type: ["House", "派对"],
-    desc: "春景當思舞蹈派对。嘉宾：Yang Bing, Bobby Du, DJ Eric Lee等。House音乐主题。",
+    name: "IYDC Hong Kong 2026 国际青年舞蹈比赛",
+    start: "2026-08-03", end: "2026-08-05",
+    city: "香港", location: "Youth Square, 柴湾",
+    type: ["街舞", "比赛", "国际赛"],
+    desc: "IYDC Hong Kong 2026国际青年舞蹈比赛。报名中。",
+    link: "https://facebook.com/IYDCHK"
+  },
+  {
+    name: "GASCA 国际舞蹈比赛 香港站",
+    start: "2026-09-01", end: "2026-09-01",
+    city: "香港", location: "香港（日期场地待定）",
+    type: ["街舞", "比赛", "国际赛"],
+    desc: "GASCA国际舞蹈比赛香港站2026。报名中。",
     link: ""
-  },
-  {
-    name: "Groove For Real All Style Battle 青年街舞",
-    start: "2026-04-18", end: "2026-04-19",
-    city: "香港", location: "铜锣湾维多利亚公园",
-    type: ["街舞", "Battle"],
-    desc: "Groove For Real 青年全舞种街舞Battle赛事。",
-    link: ""
-  },
-  {
-    name: "GROOVING SOCIETY 1on1 All-Style Battle 暨 K-Battle 香港站",
-    start: "2026-04-19", end: "2026-04-19",
-    city: "香港", location: "铜锣湾维多利亚公园",
-    type: ["街舞", "Battle", "国际赛"],
-    desc: "GROOVING SOCIETY 1on1全舞种Battle暨K-Battle香港站。冠军奖品：香港↔泰国来回机票+比赛期间酒店住宿！",
-    link: "https://www.instagram.com/p/DWNxDsvEZRm/"
-  },
-  {
-    name: "TUDB Popping 1on1 Battle",
-    start: "2026-04-11", end: "2026-04-11",
-    city: "台湾", location: "Mix Tempo Studio 舞蹈工作室",
-    type: ["Popping", "Battle"],
-    desc: "杏坛路的炼舞房vol.2 — TUDB Popping 1on1 Battle。含Guest走秀。17:30-18:00报到，18:00正式开始。",
-    link: "https://www.instagram.com/p/DWeG09rkarp/"
-  },
-  {
-    name: "与春同住 Blooming in China Tour @ 工gong",
-    start: "2026-04-08", end: "2026-04-09",
-    city: "成都", location: "工gong, 成都",
-    type: ["House", "派对"],
-    desc: "与春同住 Blooming in China Tour 成都站。Lineup: Lionmilk (Live), Colloboh (Live), tp, Dutchkiss (Live), Charlieowo。22:00开始，免费入场。",
-    link: "https://ra.co/events/2408165"
-  },
-  {
-    name: "Afrorave Vol. 9: 50 Shades of Afrohouse",
-    start: "2026-04-11", end: "2026-04-11",
-    city: "香港", location: "Casa Dao, 21/F Gold Union Commercial Building, 70-72 Connaught Rd W, Sheung Wan",
-    type: ["House", "派对"],
-    desc: "Afrorave Vol. 9: 50 Shades of Afrohouse。Afro House主题派对。",
-    link: "https://ra.co/events/2406075"
-  },
-  {
-    name: "Dancehall International Asia 2026",
-    start: "2026-05-08", end: "2026-05-10",
-    city: "武汉", location: "武汉（具体场地待公布）",
-    type: ["街舞", "Workshop", "Battle", "国际赛"],
-    desc: "Dancehall International Asia亚洲站，首次来到中国武汉！8节Workshop + Battles + Parties。嘉宾：Joelimmortal等国际舞者。报名截止4/30。",
-    link: "https://dancehall-international.com/en/?REGION_ID=62"
-  },
-  {
-    name: "Feed the Dragon x REPROBATE @ Studio 9 台北",
-    start: "2026-04-27", end: "2026-04-27",
-    city: "台湾", location: "Studio 9, 台北",
-    type: ["House", "Techno", "派对"],
-    desc: "Feed the Dragon与REPROBATE联手打造最大规模一期，连接台北与香港电子音乐场景。",
-    link: "https://ra.co/events/1901660"
-  },
-  {
-    name: "Ahung's House Dance Workshop 台湾",
-    start: "2026-04-12", end: "2026-04-26",
-    city: "台湾", location: "台湾（具体场地见IG）",
-    type: ["House", "Workshop"],
-    desc: "Ahung's House Dance Workshop基础养成班。4/12及4/26两期。适合House Dance初学者。",
-    link: "https://www.instagram.com/p/DUxBpi7gTt5/"
-  },
-  {
-    name: "Nanjing Lindy Festival 2026",
-    start: "2026-05-22", end: "2026-05-24",
-    city: "南京", location: "1701 Livehouse Max, 南京",
-    type: ["House", "派对", "Workshop"],
-    desc: "Jazz to Life! 南京Lindy Festival 2026。Gordon Webster Band、The Hot Shots携手世界级DJ，为Lindy Hopper打造梦想舞池。3天Swing/Jazz/House音乐盛宴。",
-    link: "https://www.nanjinglindyfestival.com/"
-  },
-  {
-    name: "System Breaker by Beat Street",
-    start: "2026-04-25", end: "2026-04-25",
-    city: "台湾", location: "DEX舞極專業街舞企業社",
-    type: ["街舞", "Battle"],
-    desc: "System Breaker 2on2街舞Battle。13:00-21:00。网路报名$650/组，现场$700/组。",
-    link: "https://www.instagram.com/reel/DV6IcbZDznG/"
   }
 ];
 
@@ -968,7 +984,7 @@ function renderFilters() {
   ];
   allCities.forEach(c => filters.push({key:c, label:c}));
   // Add some popular types
-  ["Battle","HipHop","Breaking","Workshop","House","Locking","国际赛"].forEach(t => {
+  ["Battle","HipHop","Breaking","Workshop","House","Locking","国际赛","派对"].forEach(t => {
     if (allTypes.includes(t)) filters.push({key:t, label:t});
   });
 
@@ -1158,7 +1174,7 @@ document.getElementById("list-view").style.display = "block";
 document.getElementById("cal-view").style.display = "none";
 
 document.getElementById("footer").innerHTML =
-  `最后更新: ${new Date().toLocaleDateString("zh-CN")} · 点击卡片展开详情<br>
+  `最后更新: 2026-04-20 · 46个活动 · 点击卡片展开详情<br>
   <span style="margin-top:4px;display:inline-block;">Powered by VisionClaw</span>`;
 </script>
 </body>
